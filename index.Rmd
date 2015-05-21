@@ -1,0 +1,88 @@
+---
+title       : Modified Mercally Intensity Scale Identifier
+subtitle    : How did you feel it?
+author      : Mona Khaleghy Rad
+job         : 
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : [shiny, interactive]        # {mathjax, quiz, bootstrap}
+mode        : selfcontained  # {standalone, draft, selfcontained}
+knit        : slidify::knit2slides
+theme       : united
+github      :  {user: mkhalegh, repo: slidify, branch: "gh-pages"}
+---
+
+## What is Modified Mercalli Intensity?
+</br>
+
+* The effect of an earthquake on the Earth's surface is called the intensity. 
+</br>
+
+* The intensity scale consists of a series of certain key responses such as people awakening, movement of furniture, damage to chimneys, and finally - total destruction. 
+</br>
+
+* This scale, composed of increasing levels of intensity that range from imperceptible shaking to catastrophic destruction, is designated by Roman numerals. It does not have a mathematical basis; instead it is an arbitrary ranking based on observed effects.
+
+</br>
+</br>
+Source: [USGS] (http://earthquake.usgs.gov/learn/topics/mercalli.php)
+
+--- .class #id 
+
+## How did you feel in a ground shaking?
+</br>
+
+This app describes the levels of Modified Mercalli intensity by characteristics of feelings picked from the bar. So,
+
+* Choose how you felt during a seismic shaking. Pick the best description that fits to what you felt. 
+</br>
+* It tells you the coresponding Mercalli Intensity and whether it is severe enough for an alarm.
+</br>
+* It also depicts the feeling associated to the shaking level. This helps you visualize the experience.
+
+--- &interactive
+
+## The Modified Mercally Intensity Scale Identifier App
+
+```{r opt.label="shiny", echo=FALSE,warning=FALSE,message=FALSE, results='asis'}
+library(slidify)
+library(slidifyLibraries)
+require(shiny)
+library(markdown)
+slidifyUI(sidebarPanel(
+#    titlePanel("Modified Mercally Intensity Scale Identifier"),
+#            helpText("Adjust slider bars to pick your shaking experience."),
+            selectInput("feel", 
+                    h5("How did you feel it?", style = "color:black"),
+                    c("Barely sensed only by a very few people.", "Felt only by a few people at rest in houses or on upper floors.","Felt indoors as a light vibration. Hanging objects may swing slightly.","Generally noticed indoors, but not outside, as a moderate vibration or jolt. Light sleepers may be awakened. Walls may creak, and glassware, crockery, doors or windows rattle.","Generally felt outside and by almost everyone indoors. Most sleepers are awakened and a few people alarmed. Small objects are shifted or overturned, and pictures knock against the wall. Some glassware and crockery may break, and loosely secured doors may swing open and shut.","Felt by all. People and animals are alarmed, and many run outside. Walking steadily is difficult. Furniture and appliances may move on smooth surfaces, and objects fall from walls and shelves. Glassware and crockery break. Slight non-structural damage to buildings may occur.","People experience difficulty standing. Furniture and appliances are shifted. Substantial damage to fragile or unsecured objects. A few weak buildings are damaged.","A few buildings are damaged and some weak buildings are destroyed.","Some buildings are damaged and many weak buildings are destroyed.","Many buildings are damaged and most weak buildings are destroyed.","Most buildings are damaged and many buildings are destroyed.","All buildings are damaged and most buildings are destroyed.")),         
+        mainPanel(
+        h6("You felt:", style = "color:green"), br(),
+        tags$div(id="inputValue", class="shiny-html-output", style = "color:black"), br(),
+        h6("Which means the MMI scale of shaking was: ", style = "color:red"), br(),
+        tags$div(id="prediction", class="shiny-html-output", style = "color:black"), br(),
+        p("Info. Source:",a("http://www.gns.cri.nz", href="http://www.gns.cri.nz/Home/Learning/Science-Topics/Earthquakes/Monitoring-Earthquakes/Other-earthquake-questions/What-is-the-difference-between-Magnitude-and-Intensity/The-Modified-Mercalli-Intensity-Scale")),
+        tags$div(id="image", class="shiny-image-output", style= "position:absolute;right:10%; bottom: 20%"),
+        p("Image Source:",a("http://www.bmkg.go.id",href="http://www.bmkg.go.id/BMKG_Pusat/Gempabumi_-_Tsunami/Gempabumi/Skala_MMI.bmkg")),br(),br(),
+        p("App address:", a("http://mkhalegh.shinyapps.io/Modified-Mercalli-Intensity/"))
+        )
+    )
+)
+```
+
+--- .class #id
+
+## Applications of the app
+
+This app can be useful for following purposes:
+
+* Surveys: after ground shakings, seismologists would like to investigate the intensity felt by people. 
+</br>
+* Education: This simple app can be used in schools and for people in eartquake-prone areas, to learn more about seismic shaking intensities.
+</br>
+* Historical events: Using descriptions of feelings reported in books and journals from times that seismlogy was not advanced, helps estimating the seismic moments (in Richter scale).
+
+<img src="./assets/img/modified_mercalli.png" style="height: 287px; position:absolute;right:30%; bottom:12px;"/>
+
+
+
